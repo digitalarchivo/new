@@ -11,24 +11,19 @@ from bs4 import BeautifulSoup
 ROW_LIMIT = 3000
 SAVE_OUTPUT = True
 
-# Define web driver options
-chrome_options = Options()
-chrome_options.add_argument('--ignore-certificate-errors')
-chrome_options.add_argument('--incognito')
-# chrome_options.add_argument('--headless')
+def scrape_data():
+    # Define web driver options
+    chrome_options = Options()
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--incognito')
+    # chrome_options.add_argument('--headless')
 
-# Define path to Chrome driver
-path = '/usr/bin/chromedriver'  # Replace with your actual path
+    # Define path to Chrome driver
+    path = '/usr/bin/chromedriver'  # Replace with your actual path
 
-# Webdriver initialization
-driver = webdriver.Chrome(executable_path=path, options=chrome_options)
+    # Webdriver initialization
+    driver = webdriver.Chrome(executable_path=path, options=chrome_options)
 
-# Streamlit UI
-st.title("CoinMarketCap Scraper")
-st.write("This app scrapes data from CoinMarketCap.")
-
-# Scraping data
-if st.button("Scrape Data"):
     start = time.time()
     scroll_location = 0
     last_row = -1
@@ -69,3 +64,11 @@ if st.button("Scrape Data"):
         winsound.Beep(frequency=2500, duration=1000)
     except ImportError:
         pass
+
+# Streamlit UI
+st.title("CoinMarketCap Scraper")
+st.write("This app scrapes data from CoinMarketCap.")
+
+# Scraping data
+if st.button("Scrape Data"):
+    scrape_data()
